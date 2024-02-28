@@ -7,16 +7,16 @@ import { TreeNodeNum } from "../common/tree";
 
 function preOrder(node: TreeNodeNum | null): number[] {
   if(node === null) return [];
-  const nodesNeedToVisit = [node]; //nodes we need to vist
+
   const visitedNodes = [];
 
-  while(nodesNeedToVisit.length > 0){
-    const visitedNode = nodesNeedToVisit.pop();
-    visitedNodes.push(visitedNode!.val)
-    nodesNeedToVisit.push(...visitedNode!.children)
+  visitedNodes.push(node.val);
+
+  for (const child of node.children) {
+    visitedNodes.push(...preOrder(child));
   }
-  console.log(visitedNodes);
-  return visitedNodes
+
+  return visitedNodes;
 }
 
 
@@ -25,11 +25,16 @@ function preOrder(node: TreeNodeNum | null): number[] {
 
 function postOrder(node: TreeNodeNum | null): number[] {
   if(node === null) return [];
-  let stack : number[] = [node.val]
-  for(const c of node!.children){
-    stack.push(c.val)
+
+  const visitedNodes = [];
+
+  for (const child of node.children) {
+    visitedNodes.push(...postOrder(child));
   }
-  return stack;
+
+  visitedNodes.push(node.val);
+
+  return visitedNodes;
 }
 
 export { preOrder, postOrder };
