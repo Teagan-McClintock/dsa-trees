@@ -6,10 +6,15 @@ import { BNodeNum } from "../common/bintree";
  */
 
 function minDepthToIncomplete(node: BNodeNum): number {
-// minDepth =
-// using queue or recursion
-// breadth first search - look at all of its children
-  return 42;
+
+  // if (node === null) return 0;
+  if (node.lnode === null || node.rnode === null) return 1;
+
+  return 1 + Math.min(
+    minDepthToIncomplete(node.lnode),
+    minDepthToIncomplete(node.rnode)
+  );
+
 }
 
 export { minDepthToIncomplete };
