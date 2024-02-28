@@ -6,8 +6,16 @@ import { TreeNodeNum } from "../common/tree";
  **/
 
 function maxDepth(node: TreeNodeNum | null): number {
+  if(node === null) return 0;
+  if(node.children.length === 0) return 1;
+
   let deepest = 0;
 
+  for(const c of node.children){
+    deepest = Math.max(deepest, 1 + maxDepth(c))
+  }
+
+  return deepest;
   /** Depth-first search
    *
    *  Keep count of how many times we've gone down, until we hit an end
@@ -18,7 +26,7 @@ function maxDepth(node: TreeNodeNum | null): number {
    *  base case: node.children.length === 0 -> 1
    *
    *  for each child:
-   *    deepest = Math.max(deepest, maxDepth(node.child)
+   *    deepest = Math.max(deepest, 1 + maxDepth(node.child))
    *  return
    */
 }
