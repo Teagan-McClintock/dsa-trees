@@ -5,8 +5,11 @@ import { BNodeNum } from "../common/bintree";
  * An incomplete node is a node with 0 or 1 children (not 2).
  */
 
-function minDepthToIncompleteNode(node: BNodeNum): number {
+function minDepthToIncomplete(node: BNodeNum): number {
+// minDepth =
+// using queue or recursion
+// breadth first search - look at all of its children
   return 42;
 }
 
-export { minDepthToIncompleteNode };
+export { minDepthToIncomplete };
